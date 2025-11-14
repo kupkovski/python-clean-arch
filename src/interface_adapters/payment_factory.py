@@ -14,5 +14,18 @@ class PaymentFactory:
     def create_payment_processor(self, payment_method: str) -> PaymentGateway:
         processor_class = self._processors.get(payment_method)
         if not processor_class:
-            raise ValueError("Invalid payment method")
+            raise ValueError(f"Invalid payment method: {payment_method}")
         return processor_class()
+
+
+# Global factory instance
+factory = PaymentFactory()
+
+
+# Decorator for self-registration
+def register(payment_method: str):
+    def decorator(processor_class: Type[PaymentGateway]):
+        factory.register_processor(payment_method, processor_class)
+        return processor_class
+
+    return decorator
