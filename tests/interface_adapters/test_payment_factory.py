@@ -2,11 +2,13 @@ import unittest
 import sys
 import os
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 
-from payment_factory import PaymentFactory
-from credit_card_processor import CreditCardProcessor
-from paypal_processor import PayPalProcessor
+from src.interface_adapters.payment_factory import PaymentFactory
+from src.interface_adapters.payment_processors import (
+    CreditCardProcessor,
+    PayPalProcessor,
+)
 
 
 class TestPaymentFactory(unittest.TestCase):

@@ -2,10 +2,9 @@ import unittest
 import sys
 import os
 
-# Add the parent directory to the sys.path to allow for imports
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 
-from item import Item
+from src.entities.item import Item
 
 
 class TestItem(unittest.TestCase):
