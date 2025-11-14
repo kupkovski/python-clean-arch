@@ -1,10 +1,9 @@
-from abc import ABC, abstractmethod
+from typing import Protocol
 
 
-class PaymentProcessor(ABC):
-    @abstractmethod
+class PaymentProcessor(Protocol):
     def process_payment(self, amount):
-        pass
+        ...
 
 
 class CreditCardProcessor(PaymentProcessor):
