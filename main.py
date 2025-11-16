@@ -2,10 +2,10 @@ from src.entities.item import Item
 from src.entities.order import Order
 from src.use_cases.process_order import ProcessOrder
 from src.interface_adapters.payment_factory import factory
+from src.interface_adapters import payment_processors
 
 # By importing the payment_processors module, the classes within it will be
 # discovered and the @register decorator will automatically register them with the factory.
-from src.interface_adapters import payment_processors
 
 
 if __name__ == "__main__":
@@ -13,7 +13,7 @@ if __name__ == "__main__":
 
     order = Order(items)
 
-    payment_method = "credit_card"
+    payment_method = "bitcoin"
 
     # The factory is now populated automatically by the decorators.
     # No manual registration is needed.
@@ -23,3 +23,4 @@ if __name__ == "__main__":
     process_order_use_case.execute(order)
 
     print(f"Order status: {order.status}")
+

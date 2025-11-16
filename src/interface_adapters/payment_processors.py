@@ -12,3 +12,9 @@ class CreditCardProcessor(PaymentGateway):
 class PayPalProcessor(PaymentGateway):
     def process_payment(self, amount: float) -> None:
         print(f"Processing PayPal payment of ${amount}")
+
+
+@register("bitcoin")
+class BitcoinProcessor(PaymentGateway):
+    def process_payment(self, amount: float) -> None:
+        print(f"Processing bitcoin payment of ${amount}")

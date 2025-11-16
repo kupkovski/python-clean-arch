@@ -9,6 +9,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '.
 from src.interface_adapters.payment_processors import (
     CreditCardProcessor,
     PayPalProcessor,
+    BitcoinProcessor,
 )
 
 
@@ -26,6 +27,13 @@ class TestPaymentProcessors(unittest.TestCase):
             processor.process_payment(200)
             output = buf.getvalue().strip()
         self.assertEqual(output, "Processing PayPal payment of $200")
+
+    def test_bitcoin_processor(self):
+        processor = BitcoinProcessor()
+        with io.StringIO() as buf, redirect_stdout(buf):
+            processor.process_payment(300)
+            output = buf.getvalue().strip()
+        self.assertEqual(output, "Processing bitcoin payment of $300")
 
 
 if __name__ == "__main__":
